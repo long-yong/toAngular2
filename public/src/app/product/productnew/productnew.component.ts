@@ -28,14 +28,14 @@ export class ProductnewComponent implements OnInit {
     getAll() {
       let obs = this._httpService.allPro();
       obs.subscribe(data => {
-        this.allObj = data['allPro'];
+        this.allObj = data['allObj'];
       });
     }
 
     getOne(id:any) {
       let obs = this._httpService.onePro(id);
       obs.subscribe(data => {
-        this.curObj = data['onePro'];
+        this.curObj = data['oneObj'];
       });
     }
   

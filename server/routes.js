@@ -81,6 +81,22 @@ module.exports = function(app) {
     app.get('/delpro/:id',              controller.delPro);
 
 
+     // author
+
+     app.get('/allauthor',               controller.allAuthor);
+
+     app.get('/oneauthor/:id',              controller.oneAuthor);
+ 
+     app.post('/newauthor',                 controller.newAuthor);
+ 
+     app.post('/newquote/:id',              controller.newQuote);
+
+     app.get('/addrank/:id/:qid',           controller.addRank);
+
+     app.get('/delrank/:id/:qid',           controller.delRank);
+ 
+     app.get('/delquote/:id/:qid',          controller.delQuote);
+
     return app;
 }
 

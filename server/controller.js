@@ -1,6 +1,8 @@
 // controller.js
 
-const { Task, Cake, Cmt, Product} = require('./models')
+const { Task, Cake, 
+        Cmt, Product, 
+        Quote, Author } = require('./models')
 
 function errArr(err) {
     arr = [];
@@ -137,36 +139,75 @@ module.exports = {
 
     allPro:(req,res)=>{
         Product.find({})
-        .then(data=>{ res.json({allPro:data}); })
+        .then(data=>{ res.json({allObj:data}); })
     },
 
     onePro:(req,res)=>{
         Product.findById(req.params.id)
-        .then(data=>{ res.json({onePro:data}); })
+        .then(data=>{ res.json({oneObj:data}); })
     },
 
     newPro:(req,res)=>{
-        Product.create({title:req.body.title,price:req.body.price,url:req.body.url})
-        .then(data=>{ 
-            res.json({onePro:data});
-        })
-        .catch(err=>{
-            res.json({errArr:errArr(err)}); 
-        })
+        Product.create(req.body)
+        .then(data=>{  res.json({oneObj:data}); })
+        .catch(err=>{  res.json({errArr:errArr(err)}); })
     },
 
     upPro:(req,res)=>{
         Product.findByIdAndUpdate(req.params.id,{$set: {title:req.body.title,price:req.body.price,url:req.body.url}},{new:true,runValidators:true})
-        .then(data=>{ res.json({onePro:data}); })
+        .then(data=>{ res.json({oneObj:data}); })
         .catch(err=>{ res.json({errArr:errArr(err)}); })
     },
     
     delPro:(req,res)=>{
         Product.findByIdAndDelete(req.params.id)
         .then(data=>{ Product.find({}).then(data=>{
-            res.json({allPro:data}); });
+            res.json({allObj:data}); });
         })
     },
 
+    //  Author
+
+    allAuthor:(req,res)=>{
+        Author.find({})
+        .then(data=>{ res.json({allObj:data}); })
+    },
+
+    oneAuthor:(req,res)=>{
+        Author.findById(req.params.id)
+        .then(data=>{ res.json({oneObj:data}); })
+    },
+
+    newAuthor:(req,res)=>{
+        Author.create(req.body)
+        .then(data=>{ res.json({oneObj:data}); })
+        .catch(err=>{ res.json({errArr:errArr(err)}); })
+    },
+
+    newQuote:(req,res)=>{
+        Quote.create(req.body).then(data=>{
+            Author.findByIdAndUpdate(req.params.id,{$push:{quotes:data}},{new:true})
+            .then(data=>{
+                let obj =data; Author.find({}).then(data=>{
+                    res.json({allObj:data,oneObj:obj});
+                })
+            })
+            .catch(err=>{ res.json({errArr:errArr(err)}); })
+        });
+    },
+
+    addRank:(req,res)=>{
+    },
+
+    delRank:(req,res)=>{
+    },
+
+    delQuote:(req,res)=>{
+        Author.findById(req.params.id).then(data=>{
+            data.quotes.findByIdAndDelete(req.params.qid);
+        });
+    }
 
 };
+
+

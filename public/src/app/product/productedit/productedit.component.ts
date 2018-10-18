@@ -30,7 +30,7 @@ export class ProducteditComponent implements OnInit {
   getOne(id:string) {
     let obs = this._httpService.onePro(id);
     obs.subscribe(data => {
-      this.formBody = data['onePro'];
+      this.formBody = data['oneObj'];
     });
   }
 

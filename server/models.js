@@ -61,11 +61,32 @@ var ProductSchema = new mongoose.Schema({
     },
 }, {timestamps:false});
 
+var QuoteSchema = new mongoose.Schema({
+    quote:{ 
+        type:String,
+        required: true,
+    },
+    rank:{
+        type:Number,
+        default:0,
+    },
+}, {timestamps:false});
+
+var AuthorSchema = new mongoose.Schema({
+    author:{ 
+        type:String,
+        required: true,
+    },
+    quotes:[QuoteSchema],
+}, {timestamps:false});
+
 
 module.exports = {
     Task:     mongoose.model('Task',     TaskSchema),
     Cake:     mongoose.model('Cake',     CakeSchema),
     Cmt:      mongoose.model('Cmt',      CmtSchema),
     Product:  mongoose.model('Product',  ProductSchema),
+    Quote:    mongoose.model('Quote',    QuoteSchema),
+    Author:   mongoose.model('Author',   AuthorSchema),
 }
 

@@ -17,6 +17,11 @@ import { ProductComponent } from './product/product.component';
 import { ProductallComponent } from './product/productall/productall.component';
 import { ProductnewComponent } from './product/productnew/productnew.component';
 import { ProducteditComponent } from './product/productedit/productedit.component';
+import { AuthorComponent } from './author/author.component';
+import { NewauthorComponent } from './author/newauthor/newauthor.component';
+import { QuotesComponent } from './author/quotes/quotes.component';
+import { NewquoteComponent } from './author/newquote/newquote.component';
+
 
 
 @NgModule({
@@ -33,6 +38,11 @@ import { ProducteditComponent } from './product/productedit/productedit.componen
     ProductallComponent,
     ProductnewComponent,
     ProducteditComponent,
+    AuthorComponent,
+    NewauthorComponent,
+    QuotesComponent,
+    NewquoteComponent,
+    
   ],
 
   imports: [

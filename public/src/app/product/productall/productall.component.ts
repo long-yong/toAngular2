@@ -23,7 +23,7 @@ export class ProductallComponent implements OnInit {
   getAll() {
     let obs = this._httpService.allPro();
     obs.subscribe(data => {
-      this.allObj = data['allPro'];
+      this.allObj = data['allObj'];
     });
   }
 
@@ -34,7 +34,7 @@ export class ProductallComponent implements OnInit {
   clickDel(id:any) {
     let obs = this._httpService.delPro(id);
     obs.subscribe(data => {
-      this.allObj = data['allPro'];
+      this.allObj = data['allObj'];
     });
   }
 
