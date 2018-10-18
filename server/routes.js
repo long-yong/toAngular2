@@ -66,6 +66,21 @@ module.exports = function(app) {
 
     app.post('/addcmt/:id',              controller.addCmt);
 
+    
+    
+    // product
+
+    app.get('/allpro',                  controller.allPro);
+
+    app.get('/onepro/:id',              controller.onePro);
+
+    app.post('/newpro',                 controller.newPro);
+
+    app.post('/uppro/:id',              controller.upPro);
+
+    app.get('/delpro/:id',              controller.delPro);
+
+
     return app;
 }
 

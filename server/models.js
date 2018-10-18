@@ -44,9 +44,28 @@ var CakeSchema = new mongoose.Schema({
     comments: [CmtSchema]
 }, {timestamps:true});
 
+
+var ProductSchema = new mongoose.Schema({
+    title:{ 
+        type:String,
+        required: [true, "Title is required."],
+        minlength:4,
+    },
+    price:{
+        type:Number,
+        required:true,
+        min:0,
+    },
+    url:{
+        type:String,
+    },
+}, {timestamps:false});
+
+
 module.exports = {
-    Task: mongoose.model('Task', TaskSchema),
-    Cake: mongoose.model('Cake', CakeSchema),
-    Cmt:  mongoose.model('Cmt',  CmtSchema)
+    Task:     mongoose.model('Task',     TaskSchema),
+    Cake:     mongoose.model('Cake',     CakeSchema),
+    Cmt:      mongoose.model('Cmt',      CmtSchema),
+    Product:  mongoose.model('Product',  ProductSchema),
 }
 

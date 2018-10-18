@@ -1,6 +1,6 @@
 // controller.js
 
-const { Task, Cake, Cmt} = require('./models')
+const { Task, Cake, Cmt, Product} = require('./models')
 
 function errArr(err) {
     arr = [];
@@ -10,7 +10,7 @@ function errArr(err) {
 
 module.exports = {
 
-    // for ejs
+    // ejs
 
     getall:(req,res)=>{
         Task.find({})
@@ -42,8 +42,7 @@ module.exports = {
         .catch(err=>{ res.render('index', {allTasks:err}); })
     },
 
-
-    // for api
+    // api
 
     clear:(req,res)=>{
         Task.deleteMany({},(err)=>{res.json(null)});
@@ -55,43 +54,37 @@ module.exports = {
         .catch(err=>{ res.json(err);  })
     },
 
-
-    // angular cpp
+    // task (cpp,epp)  angular 
 
     allTask:(req,res)=>{
         Task.find({})
         .then(data=>{ res.json({allTask:data}); })
         .catch(err=>{ res.json({allTask:null}); })
     },
-
     oneTask:(req,res)=>{
         Task.findById(req.params.id)
         .then(data=>{ res.json({oneTask:data}); })
         .catch(err=>{ res.json({oneTask:null}); })
     },
-
-    // angular epp
-
     newTask:(req,res)=>{
         Task.create({title:req.body.title,description:req.body.description})
         .then(data=>{ res.json({newTask:data}); })
         .catch(err=>{ res.json({errArr:errArr(err)}); })
     },
 
-    // angular (fpp & gpp)
+
+    // task (fpp & gpp) angular 
 
     addTask:(req,res)=>{
         Task.create({title:req.body.title,description:req.body.description})
         .then(data=>{ Task.find({}).then(data=>{ res.json({allTask:data}); }) })
         .catch(err=>{ res.json({errArr:errArr(err)}); })
     },
-
     editTask:(req,res)=>{
         Task.findByIdAndUpdate(req.params.id,{$set: {title:req.body.title,description:req.body.description}},{new:true,runValidators:true})
         .then(data=>{ Task.find({}).then(data=>{ res.json({allTask:data}); }) })
         .catch(err=>{ res.json({errArr:errArr(err)}); })
     },
-
     delTask:(req,res)=>{
         Task.findByIdAndDelete(req.params.id)
         .then(data=>{ Task.find({}).then(data=>{ res.json({allTask:data}); }) })
@@ -99,13 +92,13 @@ module.exports = {
     },
 
 
-    // angular cake (hpp & jpp)
+    // cake (hpp & jpp) angular 
+
     allCake:(req,res)=>{
         Cake.find({})
         .then(data=>{ res.json({allCake:data}); })
         .catch(err=>{ res.json({allCake:null}); })
     },
-
     addCake:(req,res)=>{
         Cake.create({ baker:req.body.baker,url:req.body.url })
         .then(data=>{ 
@@ -118,7 +111,6 @@ module.exports = {
             res.json({errArr:errArr(err)}); 
         })
     },
-
     delCake:(req,res)=>{
         Cake.findByIdAndDelete(req.params.id)
         .then(data=>{
@@ -127,7 +119,6 @@ module.exports = {
             })
         })
     },
-
     addCmt:(req,res)=>{
         Cmt.create(req.body,(err,data)=>{
             Cake.findByIdAndUpdate(req.params.id,{$push:{comments:data}},(err)=>{
@@ -139,6 +130,33 @@ module.exports = {
                 })
             });
         });
-    }
+    },
+
+
+    // product  angular 
+
+    allPro:(req,res)=>{
+        Product.find({})
+        .then(data=>{ res.json({allPro:data}); })
+    },
+    onePro:(req,res)=>{
+        Product.findById(req.params.id)
+        .then(data=>{ res.json({onePro:data}); })
+    },
+    newPro:(req,res)=>{
+        Product.create({title:req.body.title,price:req.body.price,url:req.body.url})
+        .then(data=>{ res.json({onePro:data}); })
+        .catch(err=>{ res.json({errArr:errArr(err)}); })
+    },
+    upPro:(req,res)=>{
+        Product.findByIdAndUpdate(req.params.id,{$set: {title:req.body.title,price:req.body.price,url:req.body.url}},{new:true,runValidators:true})
+        .then(data=>{ res.json({onePro:data}); })
+        .catch(err=>{ res.json({errArr:errArr(err)}); })
+    },
+    delPro:(req,res)=>{
+        Product.findByIdAndDelete(req.params.id)
+        .then(data=>{ res.json({onePro:data}); })
+    },
+
 
 };
