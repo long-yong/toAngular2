@@ -10,22 +10,24 @@
     <div id='box'>
       <h2>Product List</h2>
 
+      <div class='smlbox' *ngFor='let obj of allObj'>
 
-      <div *ngFor='let obj of allObj'>
+          <div class='high5'></div>
 
-          <!-- <img ref='' src={{obj.url}} width="100" height="100" (click)="clickImg(pro._id)"/> -->
+          <img ref='' src={{obj.url}} width="70" height="50"/> <br>
 
-          {{obj.title}} {{obj.price}} {{obj._id}} 
-          <button (click)="clickEdit(obj._id)">Edit</button>
-          <button (click)="clickDel(obj._id)">Delete</button> 
-         
-          <br>
-
+          {{obj.title}}<br> 
+          ${{obj.price}}<br>
+          <button class='inline' (click)="clickEdit(obj._id)">Edit</button>
+          <button class='inline' (click)="clickDel(obj._id)">Delete</button> 
+          
       </div>
+
+      <br><br>
     
     </div>
   
-    <br><br><br>
+    <br><br>
   
   
   </div>

@@ -28,6 +28,9 @@ p {
 .size0 {
     font-size: 13px;
 }
+table {
+    line-height: 30px;
+}
 
 .wide2   { width:  2px;  height:10px; display:inline-block; }
 .wide4   { width:  4px;  height:10px; display:inline-block; }
