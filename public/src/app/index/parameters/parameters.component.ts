@@ -1,28 +1,25 @@
-
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-gamma',
-  templateUrl: './gamma.component.html',
-  styleUrls: ['./gamma.component.css']
+  selector: 'app-parameters',
+  templateUrl: './parameters.component.html',
+  styleUrls: ['./parameters.component.css']
 })
+export class ParametersComponent implements OnInit {
 
-export class GammaComponent implements OnInit {
-  
-  routeId:number;
+  paramId:any;
 
   constructor(private _route: ActivatedRoute, private _router: Router) {}
-  
+
   ngOnInit() {
     this._route.params.subscribe((params:Params)=>{ 
-      this.routeId =  params['id'];
+      this.paramId =  params['id'];
     });
   }
 
-  goHome() {
-    this._router.navigate(['/home']);
+  clickHome() {
+    this._router.navigate(['/index/home']);
   }
- 
-}
 
+}

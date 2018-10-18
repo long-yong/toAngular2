@@ -1,14 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { IndexComponent } from './index/index.component';
-import { GammaComponent } from './gamma/gamma.component';
-import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { WelcomeComponent } from './index/welcome/welcome.component';
+import { ParametersComponent } from './index/parameters/parameters.component';
+import { PagenotfoundComponent } from './index/pagenotfound/pagenotfound.component';
+
 
 const routes: Routes = [
-  { path: 'index',component:IndexComponent },  
-  { path: 'gamma/:id',component:GammaComponent }, 
+
   { path: '', pathMatch: 'full', redirectTo: '/index' },
-  { path: '**', component:PagenotfoundComponent }
+  { path: 'index',component:IndexComponent },
+  { path: 'index/home', pathMatch: 'full', redirectTo: '/index' },
+  { path: 'index/welcome',component:WelcomeComponent }, 
+  { path: 'index/parameters/:id',component:ParametersComponent }, 
+
+  
+  // add route here
+  { path: '**', component:PagenotfoundComponent },
 ];
 
 @NgModule({

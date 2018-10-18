@@ -78,7 +78,7 @@ module.exports = {
         .catch(err=>{ res.json({errArr:errArr(err)}); })
     },
 
-    // angular fpp
+    // angular (fpp & gpp)
 
     addTask:(req,res)=>{
         Task.create({title:req.body.title,description:req.body.description})
@@ -99,7 +99,7 @@ module.exports = {
     },
 
 
-    // cake
+    // angular cake (hpp & jpp)
     allCake:(req,res)=>{
         Cake.find({})
         .then(data=>{ res.json({allCake:data}); })
