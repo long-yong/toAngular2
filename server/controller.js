@@ -139,23 +139,33 @@ module.exports = {
         Product.find({})
         .then(data=>{ res.json({allPro:data}); })
     },
+
     onePro:(req,res)=>{
         Product.findById(req.params.id)
         .then(data=>{ res.json({onePro:data}); })
     },
+
     newPro:(req,res)=>{
         Product.create({title:req.body.title,price:req.body.price,url:req.body.url})
-        .then(data=>{ res.json({onePro:data}); })
-        .catch(err=>{ res.json({errArr:errArr(err)}); })
+        .then(data=>{ 
+            res.json({onePro:data});
+        })
+        .catch(err=>{
+            res.json({errArr:errArr(err)}); 
+        })
     },
+
     upPro:(req,res)=>{
         Product.findByIdAndUpdate(req.params.id,{$set: {title:req.body.title,price:req.body.price,url:req.body.url}},{new:true,runValidators:true})
         .then(data=>{ res.json({onePro:data}); })
         .catch(err=>{ res.json({errArr:errArr(err)}); })
     },
+    
     delPro:(req,res)=>{
         Product.findByIdAndDelete(req.params.id)
-        .then(data=>{ res.json({onePro:data}); })
+        .then(data=>{ Product.find({}).then(data=>{
+            res.json({allPro:data}); });
+        })
     },
 
 

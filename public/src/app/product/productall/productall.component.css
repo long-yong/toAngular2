@@ -25,6 +25,10 @@ p {
     font-size: 20px;
 }
 
+button {
+    margin-right:10px;
+}
+
 .wide2   { width:  2px;  height:10px; display:inline-block; }
 .wide4   { width:  4px;  height:10px; display:inline-block; }
 .wide5   { width:  5px;  height:10px; display:inline-block; }

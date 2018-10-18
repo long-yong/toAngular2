@@ -9,8 +9,19 @@
   
     <div id='box'>
       <h2>Product List</h2>
-  
-      
+
+
+      <div *ngFor='let obj of allObj'>
+
+          <!-- <img ref='' src={{obj.url}} width="100" height="100" (click)="clickImg(pro._id)"/> -->
+
+          {{obj.title}} {{obj.price}} {{obj._id}} 
+          <button (click)="clickEdit(obj._id)">Edit</button>
+          <button (click)="clickDel(obj._id)">Delete</button> 
+         
+          <br>
+
+      </div>
     
     </div>
   

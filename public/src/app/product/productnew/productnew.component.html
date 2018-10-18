@@ -8,10 +8,35 @@
     <br><br>
   
     <div id='box'>
-      <h2>Create a New Product</h2>
-  
+      <h2>Create a New Product</h2>  
+
+       <a class='size0' *ngFor='let err of formErr'> {{err}} <br></a>
      
-    
+       <form class='inline' (submit)="onSubmitNew()">
+         <table>
+           <tr>
+             <td>Title</td>
+             <td><input type="text" name="formBody.title" [(ngModel)]="formBody.title"/></td>
+           </tr>
+           <tr></tr>
+           <tr>
+             <td>Price</td>
+             <td><input type="number" name="formBody.price" [(ngModel)]="formBody.price" /></td>
+           </tr>
+           <tr></tr>
+           <tr>
+              <td>Img URL</td>
+              <td><input type="text" name="formBody.url" [(ngModel)]="formBody.url" /></td>
+           </tr>
+           <tr></tr>
+           <tr>
+             <td></td>
+             <td><input type="submit" value="New Product" /></td>
+           </tr>
+          
+         </table>
+       </form>
+
     </div>
   
     <br><br><br>
