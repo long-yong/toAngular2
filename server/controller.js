@@ -37,7 +37,6 @@ function up_obj(req,res,model) {
     .catch(err=>{ res.json({errArr:errArr(err)}); })
 }
 
-
 module.exports = {
 
     // ejs
@@ -175,31 +174,42 @@ module.exports = {
     //  Author
 
     allAuthor:(req,res)=>{ all_obj(req,res,Author); },
-    oneAuthor:(req,res)=>{ one_obj(req,res,Author); }, 
+    oneAuthor:(req,res)=>{ one_obj(req,res,Author); },
     newAuthor:(req,res)=>{ new_obj(req,res,Author); },
     delAuthor:(req,res)=>{ del_obj(req,res,Author); },
-    upAuthor:(req,res) =>{ up_obj (req,res,Author); },
-    
-    newQuote:(req,res)=>{
+    upAuthor: (req,res)=>{ up_obj (req,res,Author); },
+
+    addQuote:(req,res)=>{
         Quote.create(req.body).then(data=>{
             Author.findByIdAndUpdate(req.params.id,{$push:{quotes:data}},{new:true})
             .then(data=>{
                 let obj =data; Author.find({}).then(data=>{
                     res.json({allObj:data,oneObj:obj});
                 })
-            })
-            .catch(err=>{ res.json({errArr:errArr(err)}); })
-        });
+            })   
+        })
+        .catch(err=>{ res.json({errArr:errArr(err)}); })
     },
-    delQuote:(req,res)=>{
-        Author.findById(req.params.id).then(data=>{
-            data.quotes.findByIdAndDelete(req.params.qid);
-        });
-    },
+
     addRank:(req,res)=>{
     },
+
     delRank:(req,res)=>{
     },
+
+    delQuote:(req,res)=>{
+        let quote = req.body;
+        let id = req.params.id;  
+        let qid = quote._id;
+
+        console.log(id,qid);
+        console.log(quote);
+
+        // Author.findOneAndUpdate({'quotes._id':qid},{$pull:{"quotes.$.votes":quote.votes}});
+        Author.findByIdAndUpdate({"quotes._id":qid},{$pull:{quotes:quote}});
+    },
+
+   
 
 };
 

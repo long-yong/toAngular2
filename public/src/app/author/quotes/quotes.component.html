@@ -1,3 +1,32 @@
-<p>
-  quotes works!
-</p>
+<div id='container'>
+    <h2>Quotes</h2>
+    <a [routerLink]="['/author']">Home</a>
+    <a class='underline' (click)="clickNewQuote()">New Quote</a>
+  
+    <p>{{curObj.name}}'s quotes:</p>
+    
+    <div id='box'>
+
+      <table border='1'>
+          <tr>
+            <th>Quote</th>
+            <th>Action</th>
+          </tr>
+    
+          <tr *ngFor='let quote of curObj.quotes'>
+            <td>
+              {{quote.quote}}
+            </td>
+            <td>
+                <button class='inline' (click)="clickVoteUp(quote)">Vote up</button>
+                <button class='inline' (click)="clickVoteDn(quote)">Vote dn</button>
+                <button class='inline' (click)="clickDel(quote)">Delete</button> 
+            </td>
+          </tr>
+    
+        </table>
+    
+    </div>
+  
+  </div>
+  

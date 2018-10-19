@@ -21,6 +21,7 @@ import { AuthorComponent } from './author/author.component';
 import { NewauthorComponent } from './author/newauthor/newauthor.component';
 import { QuotesComponent } from './author/quotes/quotes.component';
 import { NewquoteComponent } from './author/newquote/newquote.component';
+import { EditauthorComponent } from './author/editauthor/editauthor.component';
 
 
 
@@ -42,6 +43,7 @@ import { NewquoteComponent } from './author/newquote/newquote.component';
     NewauthorComponent,
     QuotesComponent,
     NewquoteComponent,
+    EditauthorComponent,
     
   ],
 

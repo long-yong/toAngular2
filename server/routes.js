@@ -12,6 +12,7 @@ module.exports = function(app) {
     app.use(bp.urlencoded({extended:true}));
     app.use(bp.json());
 
+    
     // ejs
     app.get ('/getall',                  controller.getall);
     app.get ('/getone/:id',              controller.getone);
@@ -19,7 +20,7 @@ module.exports = function(app) {
     app.get ('/update/:id/:p1/:p2/:p3',  controller.update);
     app.get('/delete/:id',               controller.delete);
 
-
+    
     // api
     app.get('/clear',                    controller.clear);
     app.get ('/completed',               controller.completed);
@@ -60,7 +61,10 @@ module.exports = function(app) {
     app.get('/oneauthor/:id',           controller.oneAuthor);
     app.post('/newauthor',              controller.newAuthor);
     app.post('/upauthor/:id',           controller.upAuthor);
-    app.get('/delauthor/:id',           controller.delAuthor);
+    app.get ('/delauthor/:id',          controller.delAuthor);
+    app.post('/addquote/:id',           controller.addQuote);
+
+    app.post ('/delquote/:id',           controller.delQuote);
     
 
     return app;

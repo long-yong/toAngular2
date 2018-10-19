@@ -3,24 +3,18 @@ import { HttpService } from '../../http.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-productedit',
-  templateUrl: './productedit.component.html',
-  styleUrls: ['./productedit.component.css']
+  selector: 'app-editauthor',
+  templateUrl: './editauthor.component.html',
+  styleUrls: ['./editauthor.component.css']
 })
 
-export class ProducteditComponent implements OnInit {
+export class EditauthorComponent implements OnInit {
 
   curId:    string;
   formBody: any;
   formErr:  any;
 
   constructor(private _httpService:HttpService,private _route:ActivatedRoute,private _router:Router){}
-  notErr(err:any) { if(err==undefined||err==null) return true; return false;  }
-
-  clearFormErr()  {
-    this.formErr=null;
-    this.formBody = { title:"", price:0, url:"" }; 
-  }
 
   ngOnInit() {
     this.clearFormErr();
@@ -29,9 +23,13 @@ export class ProducteditComponent implements OnInit {
       this.getOne(this.curId);
     });
   }
+  
+  notErr(err:any) { if(err==undefined||err==null) return true; return false;  }
 
+  clearFormErr()  { this.formErr=null;  this.formBody = { name:""}; }
+  
   getOne(id:string) {
-    let obs = this._httpService.onePro(id);
+    let obs = this._httpService.oneAuthor(id);
     obs.subscribe(data => {
       this.formBody = data['oneObj'];
     });
@@ -42,12 +40,12 @@ export class ProducteditComponent implements OnInit {
   }
   
   editObj(id:any,body:any) {
-    let obs = this._httpService.upPro(id,body);
+    let obs = this._httpService.upAuthor(id,body);
     obs.subscribe(data => {
       this.clearFormErr();
       this.formErr = data['errArr'];
         if(this.notErr(this.formErr)) {
-          this._router.navigate(['/product/all']);
+          this._router.navigate(['/author']);
         }
     });
   }

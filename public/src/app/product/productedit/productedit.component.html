@@ -10,7 +10,7 @@
     <div id='box'>
       <h2>Edit Product</h2>  
 
-       <a class='size0' *ngFor='let err of formErr'> {{err}} <br> </a>
+       <a class='errs' *ngFor='let err of formErr'> {{err}} <br> </a> <div class='high8'></div>
      
        <form class='inline' (submit)="onSubmitEdit()">
          <table>

@@ -48,8 +48,8 @@ var CakeSchema = new mongoose.Schema({
 var ProductSchema = new mongoose.Schema({
     title:{ 
         type:String,
-        required: [true, "Title is required."],
-        minlength:4,
+        required: true,
+        minlength:[4,"Title must have 4 or more letters"],
     },
     price:{
         type:Number,
@@ -65,17 +65,19 @@ var QuoteSchema = new mongoose.Schema({
     quote:{ 
         type:String,
         required: true,
+        minlength:[4,"Quote must have 4 or more letters"],
     },
-    rank:{
+    votes:{
         type:Number,
         default:0,
     },
 }, {timestamps:false});
 
 var AuthorSchema = new mongoose.Schema({
-    author:{ 
+    name:{
         type:String,
         required: true,
+        minlength:[2,"Name must have 2 or more letters"],
     },
     quotes:[QuoteSchema],
 }, {timestamps:false});

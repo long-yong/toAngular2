@@ -16,10 +16,11 @@ import { AuthorComponent } from './author/author.component';
 import { NewauthorComponent } from './author/newauthor/newauthor.component';
 import { QuotesComponent } from './author/quotes/quotes.component';
 import { NewquoteComponent } from './author/newquote/newquote.component';
+import { EditauthorComponent } from './author/editauthor/editauthor.component';
 
 const routes: Routes = [
 
-  { path: '', pathMatch: 'full', redirectTo: '/product' },
+  { path: '', pathMatch: 'full', redirectTo: '/author' },
 
   { path: 'index',component:IndexComponent },
   { path: 'index/home', pathMatch: 'full', redirectTo: '/index' },
@@ -32,9 +33,10 @@ const routes: Routes = [
   { path: 'product/edit/:id',component: ProducteditComponent},
 
   { path: 'author',component:AuthorComponent },
-  { path: 'author/new',component: NewauthorComponent},
+  { path: 'author/newauthor',component: NewauthorComponent },
+  { path: 'author/editauthor/:id',component: EditauthorComponent },
   { path: 'author/quotes/:id',component:QuotesComponent },
-  { path: 'author/addquote/:id',component: NewquoteComponent},
+  { path: 'author/newquote/:id',component: NewquoteComponent},
 
   // add route here
   { path: '**', component:PagenotfoundComponent },

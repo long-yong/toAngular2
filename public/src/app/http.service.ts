@@ -10,24 +10,20 @@ export class HttpService {
 
   constructor(private _http: HttpClient){ }
 
-  allPro() {
-    return this._http.get('/allpro');
-  }
+  // product
+  allPro()                { return this._http.get('/allpro');            }
+  onePro(id:any)          { return this._http.get('/onepro/'+id);        }
+  newPro(body:any)        { return this._http.post('/newpro',    body);  }
+  upPro(id:any,body:any)  { return this._http.post('/uppro/'+id, body);  }
+  delPro(id:any)          {  return this._http.get('/delpro/'+id);       }
 
-  onePro(id:any) {
-    return this._http.get('/onepro/'+id);
-  }
-
-  newPro(body:any) {
-    return this._http.post('/newpro', body);
-  }
-
-  upPro(id:any,body:any) {
-    return this._http.post('/uppro/'+id, body);
-  }
-
-  delPro(id:any) {
-    return this._http.get('/delpro/'+id);
-  }
+  // author
+  allAuthor()                { return this._http.get('/allauthor');            }
+  oneAuthor(id:any)          { return this._http.get('/oneauthor/'+id);        }
+  newAuthor(body:any)        { return this._http.post('/newauthor',    body);  }
+  upAuthor(id:any,body:any)  { return this._http.post('/upauthor/'+id, body);  }
+  delAuthor(id:any)          { return this._http.get('/delauthor/'+id);        }
+  addQuote(id:any,body:any)  { return this._http.post('/addquote/'+id, body);  }
+  delQuote(id,quote)         { return this._http.post('/delquote/'+id, quote); }
 
 }

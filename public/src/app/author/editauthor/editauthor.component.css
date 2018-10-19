@@ -8,12 +8,12 @@
 }
 
 #box {
-    width:450px;
+    width:400px;
     height:320px;
-    border: 1px solid white;
+    border: 1px solid grey;
     vertical-align: top;
     text-align: left;
-    overflow-y:scroll;
+    padding-left: 50px;
 }
 
 .inline {
@@ -25,20 +25,24 @@ p {
 }
 
 button {
-    margin:3px 5px 3px 5px;
-    font-size: 11px;
+    margin-top:3px;
+    margin-right:6px;
+    margin-bottom:6px;
+    font-size: 15px;
 }
 
 a {
     padding-left:30px;
 }
 
-.errs {
-    font-size: 10px;
-}
-
 .underline {
     text-decoration: underline;
+}
+
+.errs {
+    padding-left:0px;
+    font-size: 15px;
+    font-style:italic;
 }
 
 .wide2   { width:  2px;  height:10px; display:inline-block; }
@@ -82,30 +86,3 @@ a {
 .high60  { height: 60px; width: 10px; display: block; }
 .high80  { height: 80px; width: 10px; display: block; }
 .high100  { height:100px; width: 10px;display: block; }
-
-
-table {
-    border-collapse:collapse;
-    border: 0px solid black;
-    cellspacing: 0px;
-    line-height: 12px;
-    align:left;
-}
-
-th{
-    width:200px;
-    font-size: 14px;
-    line-height: 16px;
-}
-
-td{
-    font-size: 14px;
-    line-height: 16px;
-    text-align: left;
-    padding-left: 5px;
-    padding-right: 5px;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-}
-

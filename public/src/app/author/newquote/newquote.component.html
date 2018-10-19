@@ -1,3 +1,27 @@
-<p>
-  newquote works!
-</p>
+<div id='container'>
+    <h2>New Quote</h2>
+    <a [routerLink]="['/author']">Home</a>
+  
+    <p>add by {{curObj.name}}:</p>
+    
+    <div id='box'>
+
+         <br>
+
+         <a class='errs' *ngFor='let err of formErr'> {{err}} </a>
+       
+         <form (submit)="onSubmitAdd()">
+
+          <br>
+
+          Quote:<br>
+          <input type="text" name="formBody.quote" [(ngModel)]="formBody.quote"/> <br><br>
+
+          <input type="submit" value="Add a quote" />
+
+         </form>
+  
+      </div>
+  
+  </div>
+  

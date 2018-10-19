@@ -1,3 +1,30 @@
-<p>
-  author works!
-</p>
+<div id='container'>
+  <h2>Author</h2>
+  <a [routerLink]="['/author/newauthor']">New Author</a>
+
+  <p>We have quotes by:</p>
+  
+  <div id='box'>
+
+    <table border='1'>
+      <tr>
+        <th>Author</th>
+        <th>Action</th>
+      </tr>
+
+      <tr *ngFor='let obj of allObj'>
+        <td>
+          {{obj.name}}
+        </td>
+        <td>
+            <button class='inline' (click)="clickView(obj._id)">View quotes</button>
+            <button class='inline' (click)="clickEdit(obj._id)">Edit</button>
+            <button class='inline' (click)="clickDel(obj._id)">Delete</button> 
+        </td>
+      </tr>
+
+    </table>
+  
+  </div>
+
+</div>
