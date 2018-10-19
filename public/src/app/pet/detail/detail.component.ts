@@ -30,6 +30,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 
 export class DetailComponent implements OnInit {
 
+  once: boolean;
   curId:    string;
   formBody: any;
   formErr:  any;
@@ -37,6 +38,7 @@ export class DetailComponent implements OnInit {
   constructor(private _httpService:HttpService,private _route:ActivatedRoute,private _router:Router){}
 
   ngOnInit() {
+    this.once = false;
     this.clearFormErr();
     this._route.params.subscribe((params:Params)=>{
       this.curId =  params['id'];
@@ -56,6 +58,8 @@ export class DetailComponent implements OnInit {
   }
 
   onSubmitEdit() {
+    if(this.once) return;
+    this.once = true;
     this.formBody.likes++;
     this.editObj(this.curId,this.formBody);
   }
