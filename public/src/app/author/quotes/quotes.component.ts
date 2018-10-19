@@ -31,6 +31,7 @@ export class QuotesComponent implements OnInit {
     let obs = this._httpService.oneAuthor(id);
     obs.subscribe(data => {
       this.curObj = data['oneObj'];
+      console.log(this.curObj);
     });
   }
 

@@ -63,9 +63,14 @@ module.exports = function(app) {
     app.post('/upauthor/:id',           controller.upAuthor);
     app.get ('/delauthor/:id',          controller.delAuthor);
     app.post('/addquote/:id',           controller.addQuote);
-
     app.post ('/delquote/:id',           controller.delQuote);
-    
+
+    app.get('/allpet',                  controller.allPet);
+    app.get('/onepet/:id',              controller.onePet);
+    app.post('/newpet',                 controller.newPet);
+    app.post('/uppet/:id',              controller.upPet);
+    app.get('/delpet/:id',              controller.delPet);
+    app.get('/allpetsorted',            controller.allPetSorted);
 
     return app;
 }

@@ -26,4 +26,12 @@ export class HttpService {
   addQuote(id:any,body:any)  { return this._http.post('/addquote/'+id, body);  }
   delQuote(id,quote)         { return this._http.post('/delquote/'+id, quote); }
 
+  // product
+  allPet()                { return this._http.get('/allpet');            }
+  onePet(id:any)          { return this._http.get('/onepet/'+id);        }
+  newPet(body:any)        { return this._http.post('/newpet',    body);  }
+  upPet(id:any,body:any)  { return this._http.post('/uppet/'+id, body);  }
+  delPet(id:any)          { return this._http.get('/delpet/'+id);        } 
+  allPetSorted()          { return this._http.get('/allpetsorted');      }
+
 }

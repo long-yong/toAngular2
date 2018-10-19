@@ -1,10 +1,11 @@
 // controller.js
 
-const { Task, Cake, Cmt, Product, Quote, Author } = require('./models')
+const { Task, Cake, Cmt, Product, Quote, Author, Pet} = require('./models')
 
 function errArr(err) {
     arr = [];
     for(var key in err.errors) arr.push (err.errors[key].message);
+    if(arr.length==0) arr.push('This name is existed, input a new name!');
     return arr;
 }
 
@@ -178,7 +179,6 @@ module.exports = {
     newAuthor:(req,res)=>{ new_obj(req,res,Author); },
     delAuthor:(req,res)=>{ del_obj(req,res,Author); },
     upAuthor: (req,res)=>{ up_obj (req,res,Author); },
-
     addQuote:(req,res)=>{
         Quote.create(req.body).then(data=>{
             Author.findByIdAndUpdate(req.params.id,{$push:{quotes:data}},{new:true})
@@ -190,26 +190,33 @@ module.exports = {
         })
         .catch(err=>{ res.json({errArr:errArr(err)}); })
     },
-
+    delQuote:function(req,res){
+        console.log(req.params.id,req.body);
+        Author.findOneAndUpdate({"quotes._id":req.body._id}, {
+            $pull:{quotes:{_id:req.body._id}}
+        }, {new:true, runValidators:true})
+            .then(data=>console.log('hi ', data)||res.json(data))
+            .catch(errs=>console.log(errs)||res.json(errs))
+    },
     addRank:(req,res)=>{
     },
-
     delRank:(req,res)=>{
     },
 
-    delQuote:(req,res)=>{
-        let quote = req.body;
-        let id = req.params.id;  
-        let qid = quote._id;
 
-        console.log(id,qid);
-        console.log(quote);
+    // pet
+    allPet:(req,res)=>{ all_obj(req,res,Pet); },
+    onePet:(req,res)=>{ one_obj(req,res,Pet); },
+    newPet:(req,res)=>{ new_obj(req,res,Pet); },
+    delPet:(req,res)=>{ del_obj(req,res,Pet); },
+    upPet: (req,res)=>{ up_obj (req,res,Pet); },
 
-        // Author.findOneAndUpdate({'quotes._id':qid},{$pull:{"quotes.$.votes":quote.votes}});
-        Author.findByIdAndUpdate({"quotes._id":qid},{$pull:{quotes:quote}});
+    allPetSorted:(req,res)=>{
+        Pet.find({}).sort({'type':1})
+        .then(data=>{ 
+            res.json({allObj:data}); 
+        })
     },
-
-   
 
 };
 

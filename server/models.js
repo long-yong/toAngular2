@@ -83,6 +83,40 @@ var AuthorSchema = new mongoose.Schema({
 }, {timestamps:false});
 
 
+var PetSchema = new mongoose.Schema({
+    name:{
+        type:String,
+        unique:[true,"This name existed, give a new name!"],
+        required: true,
+        minlength:[3,"Name must have 3 or more letters"],
+    },
+    type:{ 
+        type:String,
+        required: true,
+        minlength:[3,"Type must have 3 or more letters"],
+    },
+    description:{
+        type:String,
+        required: true,
+        minlength:[3,"Description must have 3 or more letters"],
+    },
+    skill1:{ 
+        type:String,
+    },
+    skill2:{ 
+        type:String,
+    },
+    skill3:{ 
+        type:String,
+    },
+    likes:{
+        type:Number,
+        default:0,
+    },
+    
+}, {timestamps:true});
+
+
 module.exports = {
     Task:     mongoose.model('Task',     TaskSchema),
     Cake:     mongoose.model('Cake',     CakeSchema),
@@ -90,5 +124,6 @@ module.exports = {
     Product:  mongoose.model('Product',  ProductSchema),
     Quote:    mongoose.model('Quote',    QuoteSchema),
     Author:   mongoose.model('Author',   AuthorSchema),
+    Pet:      mongoose.model('Pet',      PetSchema),
 }
 

@@ -17,10 +17,14 @@ import { NewauthorComponent } from './author/newauthor/newauthor.component';
 import { QuotesComponent } from './author/quotes/quotes.component';
 import { NewquoteComponent } from './author/newquote/newquote.component';
 import { EditauthorComponent } from './author/editauthor/editauthor.component';
+import { PetComponent } from './pet/pet.component';
+import { NewpetComponent } from './pet/newpet/newpet.component';
+import { EditpetComponent } from './pet/editpet/editpet.component';
+import { DetailComponent } from './pet/detail/detail.component';
 
 const routes: Routes = [
 
-  { path: '', pathMatch: 'full', redirectTo: '/author' },
+  { path: '', pathMatch: 'full', redirectTo: '/pet' },
 
   { path: 'index',component:IndexComponent },
   { path: 'index/home', pathMatch: 'full', redirectTo: '/index' },
@@ -37,6 +41,12 @@ const routes: Routes = [
   { path: 'author/editauthor/:id',component: EditauthorComponent },
   { path: 'author/quotes/:id',component:QuotesComponent },
   { path: 'author/newquote/:id',component: NewquoteComponent},
+
+  { path: 'pet',component:PetComponent },
+  { path: 'pet/newpet',component: NewpetComponent },
+  { path: 'pet/editpet/:id',component: EditpetComponent },
+  { path: 'pet/detail/:id',component: DetailComponent },
+
 
   // add route here
   { path: '**', component:PagenotfoundComponent },
