@@ -1,14 +1,42 @@
 // controller.js
 
-const { Task, Cake, 
-        Cmt, Product, 
-        Quote, Author } = require('./models')
+const { Task, Cake, Cmt, Product, Quote, Author } = require('./models')
 
 function errArr(err) {
     arr = [];
     for(var key in err.errors) arr.push (err.errors[key].message);
     return arr;
 }
+
+function all_obj(req,res,model) {
+    model.find({})
+    .then(data=>{ res.json({allObj:data}); });
+}
+
+function one_obj(req,res,model) {
+    model.findById(req.params.id)
+    .then(data=>{ res.json({oneObj:data}); });
+}
+
+function new_obj(req,res,model) {
+     model.create(req.body)
+    .then(data=>{ res.json({oneObj:data}); })
+    .catch(err=>{ res.json({errArr:errArr(err)}); });
+}
+
+function del_obj(req,res,model) {
+    model.findByIdAndDelete(req.params.id)
+    .then(data=>{ model.find({}).then(data=>{
+        res.json({allObj:data}); });
+    });
+}
+
+function up_obj(req,res,model) {
+    model.findByIdAndUpdate(req.params.id, req.body, {new:true,runValidators:true})
+    .then(data=>{ res.json({oneObj:data}); })
+    .catch(err=>{ res.json({errArr:errArr(err)}); })
+}
+
 
 module.exports = {
 
@@ -137,53 +165,21 @@ module.exports = {
 
     // product  angular 
 
-    allPro:(req,res)=>{
-        Product.find({})
-        .then(data=>{ res.json({allObj:data}); })
-    },
-
-    onePro:(req,res)=>{
-        Product.findById(req.params.id)
-        .then(data=>{ res.json({oneObj:data}); })
-    },
-
-    newPro:(req,res)=>{
-        Product.create(req.body)
-        .then(data=>{  res.json({oneObj:data}); })
-        .catch(err=>{  res.json({errArr:errArr(err)}); })
-    },
-
-    upPro:(req,res)=>{
-        Product.findByIdAndUpdate(req.params.id,{$set: {title:req.body.title,price:req.body.price,url:req.body.url}},{new:true,runValidators:true})
-        .then(data=>{ res.json({oneObj:data}); })
-        .catch(err=>{ res.json({errArr:errArr(err)}); })
-    },
+    allPro:(req,res)=>{ all_obj(req,res,Product); },
+    onePro:(req,res)=>{ one_obj(req,res,Product); }, 
+    newPro:(req,res)=>{ new_obj(req,res,Product); },
+    delPro:(req,res)=>{ del_obj(req,res,Product); },
+    upPro:(req,res) =>{ up_obj (req,res,Product); },
     
-    delPro:(req,res)=>{
-        Product.findByIdAndDelete(req.params.id)
-        .then(data=>{ Product.find({}).then(data=>{
-            res.json({allObj:data}); });
-        })
-    },
-
+    
     //  Author
 
-    allAuthor:(req,res)=>{
-        Author.find({})
-        .then(data=>{ res.json({allObj:data}); })
-    },
-
-    oneAuthor:(req,res)=>{
-        Author.findById(req.params.id)
-        .then(data=>{ res.json({oneObj:data}); })
-    },
-
-    newAuthor:(req,res)=>{
-        Author.create(req.body)
-        .then(data=>{ res.json({oneObj:data}); })
-        .catch(err=>{ res.json({errArr:errArr(err)}); })
-    },
-
+    allAuthor:(req,res)=>{ all_obj(req,res,Author); },
+    oneAuthor:(req,res)=>{ one_obj(req,res,Author); }, 
+    newAuthor:(req,res)=>{ new_obj(req,res,Author); },
+    delAuthor:(req,res)=>{ del_obj(req,res,Author); },
+    upAuthor:(req,res) =>{ up_obj (req,res,Author); },
+    
     newQuote:(req,res)=>{
         Quote.create(req.body).then(data=>{
             Author.findByIdAndUpdate(req.params.id,{$push:{quotes:data}},{new:true})
@@ -195,18 +191,15 @@ module.exports = {
             .catch(err=>{ res.json({errArr:errArr(err)}); })
         });
     },
-
-    addRank:(req,res)=>{
-    },
-
-    delRank:(req,res)=>{
-    },
-
     delQuote:(req,res)=>{
         Author.findById(req.params.id).then(data=>{
             data.quotes.findByIdAndDelete(req.params.qid);
         });
-    }
+    },
+    addRank:(req,res)=>{
+    },
+    delRank:(req,res)=>{
+    },
 
 };
 
