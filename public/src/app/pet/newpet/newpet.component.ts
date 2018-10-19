@@ -48,7 +48,7 @@ export class NewpetComponent implements OnInit {
   newObj(body){
     let obs = this._httpService.newPet(body);
     obs.subscribe(data => {
-      this.clearFormErr();
+      // this.clearFormErr();
       this.formErr = data['errArr'];
         if(this.notErr(this.formErr)) {
         this._router.navigate(['/pet']);

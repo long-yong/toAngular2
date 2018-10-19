@@ -92,7 +92,7 @@ export class EditpetComponent implements OnInit {
   notErr(err:any) { if(err==undefined||err==null) return true; return false;  }
 
   clearFormErr()  { this.formErr=null;  this.formBody = { name:""}; }
-  
+
   getOne(id:string) {
     let obs = this._httpService.onePet(id);
     obs.subscribe(data => {
@@ -107,7 +107,7 @@ export class EditpetComponent implements OnInit {
   editObj(id:any,body:any) {
     let obs = this._httpService.upPet(id,body);
     obs.subscribe(data => {
-      this.clearFormErr();
+      // this.clearFormErr();
       this.formErr = data['errArr'];
         if(this.notErr(this.formErr)) {
           this._router.navigate(['/pet']);
