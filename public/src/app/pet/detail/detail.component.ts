@@ -1,22 +1,3 @@
-/*
-import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.css']
-})
-export class DetailComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
-*/
-
-
 
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../http.service';

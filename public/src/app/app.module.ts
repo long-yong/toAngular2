@@ -17,11 +17,13 @@ import { ProductComponent } from './product/product.component';
 import { ProductallComponent } from './product/productall/productall.component';
 import { ProductnewComponent } from './product/productnew/productnew.component';
 import { ProducteditComponent } from './product/productedit/productedit.component';
+
 import { AuthorComponent } from './author/author.component';
 import { NewauthorComponent } from './author/newauthor/newauthor.component';
 import { QuotesComponent } from './author/quotes/quotes.component';
 import { NewquoteComponent } from './author/newquote/newquote.component';
 import { EditauthorComponent } from './author/editauthor/editauthor.component';
+
 import { PetComponent } from './pet/pet.component';
 import { NewpetComponent } from './pet/newpet/newpet.component';
 import { DetailComponent } from './pet/detail/detail.component';
@@ -43,11 +45,13 @@ import { EditpetComponent } from './pet/editpet/editpet.component';
     ProductallComponent,
     ProductnewComponent,
     ProducteditComponent,
+
     AuthorComponent,
     NewauthorComponent,
     QuotesComponent,
     NewquoteComponent,
     EditauthorComponent,
+
     PetComponent,
     NewpetComponent,
     DetailComponent,
@@ -61,7 +65,10 @@ import { EditpetComponent } from './pet/editpet/editpet.component';
     HttpClientModule, 
     FormsModule,
   ],
+
   providers: [HttpService],
+  
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }

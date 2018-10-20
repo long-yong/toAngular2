@@ -1,16 +1,3 @@
-/*
-import { Component, OnInit } from '@angular/core';
-@Component({
-  selector: 'app-newpet',
-  templateUrl: './newpet.component.html',
-  styleUrls: ['./newpet.component.css']
-})
-export class NewpetComponent implements OnInit {
-  constructor() { }
-  ngOnInit() {
-  }
-}
-*/
 
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../http.service';
@@ -48,7 +35,6 @@ export class NewpetComponent implements OnInit {
   newObj(body){
     let obs = this._httpService.newPet(body);
     obs.subscribe(data => {
-      // this.clearFormErr();
       this.formErr = data['errArr'];
         if(this.notErr(this.formErr)) {
         this._router.navigate(['/pet']);
